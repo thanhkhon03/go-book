@@ -18,7 +18,7 @@ func snippetView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Fprintf(w, "Display a specific snippet with ID %d...", id)
-}
+} // Xuất ra 1 hình chiếu cụ thể
 
 func snippetCreate(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Create a new snippet..."))
