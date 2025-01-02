@@ -1,2 +1,5 @@
-module snippetbox.alexedwards.net
+module snippetbox
+
+go 1.21.6
+
 
