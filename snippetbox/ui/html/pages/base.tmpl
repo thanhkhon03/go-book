@@ -1,0 +1,21 @@
+{{define "base"}}
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>{{template "title" .}} - snippetBox</title>
+</head>
+<body>
+    <header>
+    <!-- Invoke the navigation template -->
+        <h1><a href='/'>snippetBox</a></h1>
+    </header>
+    <main>
+        {{template "main" .}}
+    </main>
+    <footer>
+        Powered by <a href='https://golang.org/'>Go</a>
+    </footer>
+</body>
+</html>
+{{end}}
