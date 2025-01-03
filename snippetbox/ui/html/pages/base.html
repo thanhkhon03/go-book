@@ -4,18 +4,24 @@
 <head>
     <meta charset='utf-8'>
     <title>{{template "title" .}} - snippetBox</title>
+
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="shortcut icon" href='/static/img/favicon.ico' type='image/x-icon'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700">
 </head>
-<body>
-    <header>
+    <body>
+      <header>
     <!-- Invoke the navigation template -->
         <h1><a href='/'>snippetBox</a></h1>
-    </header>
-    <main>
+      </header>
+    {{template "nav" .}}
+      <main>
         {{template "main" .}}
-    </main>
-    <footer>
+      </main>
+      <footer>
         Practice <a href='https://onecompiler.com/go'>Complier</a>
-    </footer>
-</body>
+       </footer>
+      <script src='./ui/static/js/main.js' type="text/javascript" ></script>
+    </body>
 </html>
 {{end}}

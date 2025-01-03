@@ -8,7 +8,7 @@ import (
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello from Snippetbox"))
+	w.Write([]byte("Hello from SnippetBox"))
 }
 
 func snippetView(w http.ResponseWriter, r *http.Request) {
