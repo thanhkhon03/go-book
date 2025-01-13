@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	addr := flag.String("addr", ":8080", "HTTP network address")
+	addr := flag.String("addr", ":8080", "HTTP network address") // Them addr...
 	flag.Parse()
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
