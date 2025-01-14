@@ -2,28 +2,26 @@ package main
 
 import (
 	"fmt"
-	"go-jwt/jwtutils"
-	"log"
-	"time"
+	//"net/http"
+	//"go-jwt/handler"
+	"go-jwt/driver"
+	models "go-jwt/model"
+	repoImpl "go-jwt/repository/repoimpl"
 
 )
 
 func main() {
-	//Taọ token mới
-	token, err := jwtutils.CreateToken("12345", time.Hour*2) // Token het han sau 2 gio
-	if err != nil {
-		log.Fatalf("Failed to create token: %v", err)
+	mongo := driver.ConnectMongoDB(DB_USER, DB_PASS)
 
+	userrepo := repoImpl.NewUserRepo(mongo.Client.Database(DB_NAME))
+
+	user := models.User{
+		Email:       "admin@example.com",
+		Password:    "1234567890",
+		DisplayName: "Admin",
 	}
-	fmt.Println("Generated token:", token)
-
-	//Xac minh token
-	claims, err := jwtutils.VerifyToken(token)
-	if err != nil {
-		log.Fatalf("Failed to verify token: %v", err)
-
+	err := userrepo.Insert(user)
+	if err == nil {
+		fmt.Println("Insert ok")
 	}
-
-	fmt.Printf("Token claims: %+v\n", claims)
-
 }
