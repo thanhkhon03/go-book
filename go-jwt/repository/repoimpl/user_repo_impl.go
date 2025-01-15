@@ -23,17 +23,12 @@ func (mongo *UserRepoImpl) FindUserByEmail(email string) (models.User, error) {
 	user := models.User{}
 
 	result := mongo.Db.Collection("users").
-						FindOne(context.Background(), 
-								bson.M{"email" :email})	
+		FindOne(context.Background(),
+			bson.M{"email": email})
 
-	err := result.Decode(&user)	
-
-	if user == (models.User{}) {
-		return user, models.ERR_USER_NOT_FOUND
-	}
-
-	if err != nil {
-		return user, err 
+	err := result.Decode(&user)
+	if err == nil {
+		return user, err
 	}
 
 	return user, nil
@@ -41,7 +36,7 @@ func (mongo *UserRepoImpl) FindUserByEmail(email string) (models.User, error) {
 
 func (mongo *UserRepoImpl) Insert(user models.User) error {
 	bbytes, _ := bson.Marshal(user)
-	
+
 	_, err := mongo.Db.Collection("users").InsertOne(context.Background(), bbytes)
 	if err != nil {
 		return err
@@ -54,27 +49,16 @@ func (mongo *UserRepoImpl) CheckLoginInfo(email, password string) (models.User, 
 	user := models.User{}
 
 	result := mongo.Db.Collection("users").
-						FindOne(context.Background(), 
-								bson.M{
-									"email" :email,
-									"password": password,
-								})	
+		FindOne(context.Background(),
+			bson.M{
+				"email":    email,
+				"password": password,
+			})
 
-	err := result.Decode(&user)	
+	err := result.Decode(&user)
 	if err != nil {
-		return user, err 
+		return user, err
 	}
 
 	return user, nil
 }
-
-
-
-
-
-
-
-
-
-
-
